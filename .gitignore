@@ -23,3 +23,8 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+
+# Added by cargo
+
+/target

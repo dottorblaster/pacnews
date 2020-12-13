@@ -1,0 +1,9 @@
+[package]
+name = "pacnews"
+version = "0.1.0"
+authors = ["Alessio Biancalana <dottorblaster@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+rss = "1.9.0"
+reqwest = { version = "0.10", features = ["blocking"] }
