@@ -1,3 +1,5 @@
+extern crate clap;
+use clap::{App};
 use rss::Channel;
 
 const FEED_URL: &str = "https://www.archlinux.org/feeds/news/";
@@ -13,14 +15,16 @@ pub struct Entry {
 fn print_entry(entry: Entry) -> () {
     println!(
         "Title: {}\nPosted: {}\nLink: {}\n{}\n\n",
-        entry.title,
-        entry.date,
-        entry.link,
-        entry.content,
+        entry.title, entry.date, entry.link, entry.content,
     );
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let _matches = App::new("pacnews")
+        .version("2.1.0")
+        .author("Alessio Biancalana <dottorblaster@gmail.com>")
+        .about("Read Arch Linux news feed directly from your terminal").get_matches();
+
     let content = reqwest::blocking::get(FEED_URL)?.bytes()?;
     let channel = Channel::read_from(&content[..])?;
     let items = channel.into_items();
