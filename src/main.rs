@@ -1,5 +1,5 @@
 extern crate clap;
-use clap::{App};
+use clap::App;
 use rss::Channel;
 
 const FEED_URL: &str = "https://www.archlinux.org/feeds/news/";
@@ -23,7 +23,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _matches = App::new("pacnews")
         .version("2.1.0")
         .author("Alessio Biancalana <dottorblaster@gmail.com>")
-        .about("Read Arch Linux news feed directly from your terminal").get_matches();
+        .about("Read Arch Linux news feed directly from your terminal")
+        .get_matches();
 
     let content = reqwest::blocking::get(FEED_URL)?.bytes()?;
     let channel = Channel::read_from(&content[..])?;
