@@ -12,7 +12,7 @@ pub struct Entry {
     pub content: String,
 }
 
-fn print_entry(entry: Entry) -> () {
+fn print_entry(entry: Entry) {
     println!(
         "Title: {}\nPosted: {}\nLink: {}\n{}\n\n",
         entry.title, entry.date, entry.link, entry.content,
