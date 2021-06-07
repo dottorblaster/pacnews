@@ -5,9 +5,12 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: archlinux
 
     steps:
       - uses: actions/checkout@v1
-      - uses: icepuma/rust-action@master
-        with:
-          args: cargo fmt -- --check && cargo clippy -- -Dwarnings && cargo build
+      - name: Install packages
+        run: pacman -Syu rust gcc openssl clang pkgconf --noconfirm --needed
+      - name: Run the checks
+        run: cargo fmt -- --check && cargo clippy -- -Dwarnings && cargo build
