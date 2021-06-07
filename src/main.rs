@@ -6,6 +6,7 @@ use rss::{Channel, Item};
 
 const FEED_URL: &str = "https://www.archlinux.org/feeds/news/";
 
+#[derive(Clone, Debug)]
 pub struct Entry {
     pub title: String,
     pub link: String,
@@ -50,6 +51,15 @@ fn get_pacman_packages() -> Result<Vec<String>, Box<dyn std::error::Error>> {
     Ok(packages)
 }
 
+fn has_package_name(text: &str) -> bool {
+    match get_pacman_packages() {
+        Ok(package_names) => package_names
+            .iter()
+            .any(|package_name| text.contains(package_name)),
+        Err(_) => false,
+    }
+}
+
 fn get_config_options(config: ArgMatches) -> (String, bool) {
     (
         config.value_of("sort").unwrap().to_string(),
@@ -86,7 +96,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let items = get_items(&sort)?;
 
     let entries = match lookup {
-        true => Vec::new(),
+        true => {
+            let total_entries = map_rss_items_to_entries(items);
+            total_entries
+                .iter()
+                .filter(|entry| has_package_name(&entry.title))
+                .cloned()
+                .collect()
+        }
         false => map_rss_items_to_entries(items),
     };
 
