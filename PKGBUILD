@@ -1,6 +1,6 @@
 # Maintainer: Alessio Biancalana <dottorblaster@gmail.com>
 pkgname=pacnews
-pkgver=2.0.0
+pkgver=2.1.0
 pkgrel=1
 pkgdesc="Read Arch Linux News from your CLI"
 arch=('i686' 'x86_64')
