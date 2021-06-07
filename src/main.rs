@@ -1,71 +1,11 @@
 extern crate alpm;
 extern crate clap;
-use alpm::Alpm;
-use clap::{App, Arg, ArgMatches};
-use rss::{Channel, Item};
+use clap::{App, Arg};
 
-const FEED_URL: &str = "https://www.archlinux.org/feeds/news/";
-
-#[derive(Clone, Debug)]
-pub struct Entry {
-    pub title: String,
-    pub link: String,
-    pub date: String,
-    pub author: String,
-    pub content: String,
-}
-
-fn print_entry(entry: Entry) {
-    println!(
-        "Title: {}\nPosted: {}\nLink: {}\n{}\n\n",
-        entry.title, entry.date, entry.link, entry.content,
-    );
-}
-
-fn get_items(sort: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    let content = reqwest::blocking::get(FEED_URL)?.bytes()?;
-    let channel = Channel::read_from(&content[..])?;
-    match sort {
-        "desc" => Ok(channel.into_items().into_iter().rev().collect()),
-        _ => Ok(channel.into_items()),
-    }
-}
-
-fn map_rss_items_to_entries(items: Vec<Item>) -> Vec<Entry> {
-    items
-        .iter()
-        .map(|item| Entry {
-            title: item.title().unwrap().to_string(),
-            link: item.link().unwrap().to_string(),
-            date: item.pub_date().unwrap().to_string(),
-            author: item.author().unwrap_or_default().to_string(),
-            content: item.description().unwrap_or_default().to_string(),
-        })
-        .collect()
-}
-
-fn get_pacman_packages() -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let pacman = Alpm::new("/", "/var/lib/pacman")?;
-    let db = pacman.localdb();
-    let packages = db.pkgs().iter().map(|p| p.name().to_string()).collect();
-    Ok(packages)
-}
-
-fn has_package_name(text: &str) -> bool {
-    match get_pacman_packages() {
-        Ok(package_names) => package_names
-            .iter()
-            .any(|package_name| text.contains(package_name)),
-        Err(_) => false,
-    }
-}
-
-fn get_config_options(config: ArgMatches) -> (String, bool) {
-    (
-        config.value_of("sort").unwrap().to_string(),
-        config.is_present("lookup"),
-    )
-}
+mod config;
+mod entry;
+mod feed;
+mod pacman;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let config = App::new("pacnews")
@@ -91,24 +31,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .get_matches();
 
-    let (sort, lookup) = get_config_options(config);
+    let (sort, lookup) = config::get_config_options(config);
 
-    let items = get_items(&sort)?;
+    let items = feed::get_items(&sort)?;
 
     let entries = match lookup {
         true => {
-            let total_entries = map_rss_items_to_entries(items);
+            let total_entries = entry::map_rss_items_to_entries(items);
             total_entries
                 .iter()
-                .filter(|entry| has_package_name(&entry.title))
+                .filter(|entry| pacman::has_package_name(&entry.title))
                 .cloned()
                 .collect()
         }
-        false => map_rss_items_to_entries(items),
+        false => entry::map_rss_items_to_entries(items),
     };
 
     for entry in entries {
-        print_entry(entry);
+        entry::print_entry(entry);
     }
 
     Ok(())
