@@ -5,6 +5,7 @@ use clap::{App, Arg};
 mod config;
 mod entry;
 mod feed;
+mod markdown;
 mod pacman;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
