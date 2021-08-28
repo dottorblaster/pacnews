@@ -1,3 +1,4 @@
+use crate::markdown;
 use rss::Item;
 
 #[derive(Clone)]
@@ -10,9 +11,11 @@ pub struct Entry {
 }
 
 pub fn print_entry(entry: Entry) {
+    let raw_html_content = markdown::strip_new_lines(entry.content);
+    let markdown_content = markdown::to_markdown(raw_html_content);
     println!(
-        "Title: {}\nPosted: {}\nLink: {}\n{}\n\n",
-        entry.title, entry.date, entry.link, entry.content,
+        "Title: {}\nPosted: {}\nLink: {}\n{}",
+        entry.title, entry.date, entry.link, markdown_content,
     );
 }
 
