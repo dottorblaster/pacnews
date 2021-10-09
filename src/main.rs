@@ -9,7 +9,7 @@ mod pacman;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let config = App::new("pacnews")
-        .version("2.1.0")
+        .version("2.1.1")
         .author("Alessio Biancalana <dottorblaster@gmail.com>")
         .about("Read Arch Linux news feed directly from your terminal")
         .arg(
