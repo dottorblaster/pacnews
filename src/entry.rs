@@ -1,4 +1,3 @@
-use crate::markdown;
 use rss::Item;
 
 #[derive(Clone)]
