@@ -14,7 +14,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .about("Read Arch Linux news feed directly from your terminal")
         .arg(
             Arg::with_name("sort")
-                .short("s")
+                .short('s')
                 .long("sort")
                 .help("Sort by date")
                 .value_name("asc/desc")
@@ -24,7 +24,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .arg(
             Arg::with_name("lookup")
-                .short("l")
+                .short('l')
                 .long("lookup")
                 .help("Perform a lookup based on installed package names")
                 .takes_value(false),
