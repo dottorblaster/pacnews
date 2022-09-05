@@ -10,9 +10,10 @@ pub struct Entry {
 }
 
 pub fn print_entry(entry: Entry) {
+    let markdown_content = html2text::from_read(entry.content.as_bytes(), 250);
     println!(
-        "Title: {}\nPosted: {}\nLink: {}\n{}\n\n",
-        entry.title, entry.date, entry.link, entry.content,
+        "Title: {}\nPosted: {}\nLink: {}\n{}",
+        entry.title, entry.date, entry.link, markdown_content,
     );
 }
 

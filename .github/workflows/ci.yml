@@ -13,4 +13,4 @@ jobs:
       - name: Install packages
         run: pacman -Syu rust gcc openssl clang pkgconf --noconfirm --needed
       - name: Run the checks
-        run: cargo fmt -- --check && cargo clippy -- -Dwarnings && cargo build
+        run: cargo fmt -- --check && cargo clippy -- -Dwarnings && cargo build && cargo test
