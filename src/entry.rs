@@ -11,8 +11,7 @@ pub struct Entry {
 }
 
 pub fn print_entry(entry: Entry) {
-    let raw_html_content = markdown::strip_new_lines(entry.content);
-    let markdown_content = markdown::to_markdown(raw_html_content);
+    let markdown_content = html2text::from_read(entry.content.as_bytes(), 250);
     println!(
         "Title: {}\nPosted: {}\nLink: {}\n{}",
         entry.title, entry.date, entry.link, markdown_content,
