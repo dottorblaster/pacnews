@@ -119,6 +119,7 @@ dependencies = [
  "bitflags",
  "clap_lex",
  "indexmap",
+ "once_cell",
  "strsim",
  "termcolor",
  "textwrap",
@@ -720,7 +721,7 @@ checksum = "9ff7415e9ae3fff1225851df9e0d9e4e5479f947619774677a63572e55e80eff"
 
 [[package]]
 name = "pacnews"
-version = "2.1.2"
+version = "2.2.0"
 dependencies = [
  "alpm",
  "clap",
