@@ -21,9 +21,9 @@ pub fn map_rss_items_to_entries(items: Vec<Item>) -> Vec<Entry> {
     items
         .iter()
         .map(|item| Entry {
-            title: item.title().unwrap().to_string(),
-            link: item.link().unwrap().to_string(),
-            date: item.pub_date().unwrap().to_string(),
+            title: item.title().unwrap_or_default().to_string(),
+            link: item.link().unwrap_or_default().to_string(),
+            date: item.pub_date().unwrap_or_default().to_string(),
             author: item.author().unwrap_or_default().to_string(),
             content: item.description().unwrap_or_default().to_string(),
         })
