@@ -29,9 +29,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .help("Perform a lookup based on installed package names")
                 .takes_value(false),
         )
+        .arg(
+            Arg::with_name("colors")
+                .short('c')
+                .long("colors")
+                .help("Enable colored output for entries")
+                .takes_value(false),
+        )
         .get_matches();
 
-    let (sort, lookup) = config::get_config_options(config);
+    let (sort, lookup, colors) = config::get_config_options(config);
 
     let items = feed::get_items(&sort)?;
 
@@ -48,7 +55,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     for entry in entries {
-        entry::print_entry(entry);
+        if colors {
+            entry::print_colored_entry(entry);
+        } else {
+            entry::print_entry(entry);
+        }
     }
 
     Ok(())

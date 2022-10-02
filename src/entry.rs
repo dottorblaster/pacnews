@@ -1,3 +1,4 @@
+use colored::Colorize;
 use rss::Item;
 
 #[derive(Clone)]
@@ -14,6 +15,17 @@ pub fn print_entry(entry: Entry) {
     println!(
         "Title: {}\nPosted: {}\nLink: {}\n{}",
         entry.title, entry.date, entry.link, markdown_content,
+    );
+}
+
+pub fn print_colored_entry(entry: Entry) {
+    let markdown_content = html2text::from_read(entry.content.as_bytes(), 250);
+    println!(
+        "Title: {}\nPosted: {}\nLink: {}\n{}",
+        entry.title.cyan(),
+        entry.date.yellow(),
+        entry.link.purple(),
+        markdown_content,
     );
 }
 
