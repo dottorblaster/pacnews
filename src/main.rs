@@ -15,7 +15,7 @@ mod pacman;
     long_about = None
 )]
 pub struct Args {
-    #[clap(short, long, arg_enum, value_parser, default_value_t=Sort::Asc, help = "Sort by date")]
+    #[arg(short, long, value_enum, value_parser, default_value_t=Sort::Asc, help = "Sort by date")]
     sort: Sort,
     #[clap(
         short,
@@ -23,7 +23,7 @@ pub struct Args {
         help = "Perform a lookup based on installed package names"
     )]
     lookup: bool,
-    #[clap(short, long, help = "Enable colored output for entries")]
+    #[arg(short, long, help = "Enable colored output for entries")]
     colors: bool,
 }
 
