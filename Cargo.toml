@@ -9,7 +9,7 @@ edition = "2018"
 
 [dependencies]
 alpm = "2.2.1"
-clap = { version = "4.0.18", features = ["cargo", "derive"] }
+clap = { version = "4.0.26", features = ["cargo", "derive"] }
 colored = "2.0.0"
 html2text = "0.4.3"
 rss = "2.0.1"
