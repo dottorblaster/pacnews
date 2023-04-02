@@ -14,7 +14,10 @@ pub fn print_entry(entry: Entry) {
     let markdown_content = html2text::from_read(entry.content.as_bytes(), 250);
     println!(
         "Title: {}\nPosted: {}\nLink: {}\n{}",
-        entry.title, entry.date, entry.link, markdown_content,
+        entry.title,
+        entry.date,
+        entry.link,
+        termimad::inline(&markdown_content),
     );
 }
 
@@ -25,7 +28,7 @@ pub fn print_colored_entry(entry: Entry) {
         entry.title.cyan(),
         entry.date.yellow(),
         entry.link.purple(),
-        markdown_content,
+        termimad::inline(&markdown_content),
     );
 }
 
