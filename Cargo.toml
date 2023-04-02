@@ -1,6 +1,6 @@
 [package]
 name = "pacnews"
-version = "2.2.0"
+version = "2.3.0"
 description = "Read the latest Arch Linux news in your terminal with a single command"
 authors = ["Alessio Biancalana <dottorblaster@gmail.com>"]
 license = "MIT"
