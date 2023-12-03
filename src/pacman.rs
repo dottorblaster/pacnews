@@ -15,3 +15,11 @@ pub fn has_package_name(text: &str) -> bool {
         Err(_) => false,
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn does_have_package_name() {}
+}
