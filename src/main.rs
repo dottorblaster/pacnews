@@ -54,9 +54,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     for entry in entries {
         if colors {
-            entry::print_colored_entry(entry);
+            let colored_entry = entry::ColoredEntry::from(entry);
+            println!("{}", colored_entry)
         } else {
-            entry::print_entry(entry);
+            println!("{}", entry)
         }
     }
 
