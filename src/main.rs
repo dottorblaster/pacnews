@@ -7,6 +7,8 @@ mod entry;
 mod feed;
 mod pacman;
 
+static DB_PATH: &str = "/var/lib/pacman";
+
 #[derive(Parser, Debug)]
 #[clap(
     author,
@@ -45,7 +47,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let total_entries = entry::map_rss_items_to_entries(items);
             total_entries
                 .iter()
-                .filter(|entry| pacman::has_package_name(&entry.title))
+                .filter(|entry| pacman::has_package_name(DB_PATH, &entry.title))
                 .cloned()
                 .collect()
         }
