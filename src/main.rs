@@ -8,6 +8,7 @@ mod feed;
 mod pacman;
 
 static DB_PATH: &str = "/var/lib/pacman";
+static FEED_URL: &str = "https://www.archlinux.org/feeds/news/";
 
 #[derive(Parser, Debug)]
 #[clap(
@@ -40,7 +41,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let (sort, lookup, colors) = config::get_config_options(config);
 
-    let items = feed::get_items(&sort)?;
+    let items = feed::get_items(FEED_URL, &sort)?;
 
     let entries = match lookup {
         true => {
