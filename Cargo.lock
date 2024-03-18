@@ -1015,7 +1015,7 @@ dependencies = [
 
 [[package]]
 name = "pacnews"
-version = "2.4.0"
+version = "2.4.1"
 dependencies = [
  "alpm",
  "assert_cmd",
