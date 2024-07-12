@@ -7,7 +7,6 @@ pub struct Entry {
     pub title: String,
     pub link: String,
     pub date: String,
-    pub author: String,
     pub content: String,
 }
 
@@ -30,7 +29,6 @@ pub struct ColoredEntry {
     pub title: String,
     pub link: String,
     pub date: String,
-    pub author: String,
     pub content: String,
 }
 
@@ -40,7 +38,6 @@ impl From<Entry> for ColoredEntry {
             title: entry.title,
             link: entry.link,
             date: entry.date,
-            author: entry.author,
             content: entry.content,
         }
     }
@@ -67,7 +64,6 @@ pub fn map_rss_items_to_entries(items: Vec<Item>) -> Vec<Entry> {
             title: item.title().unwrap_or_default().to_string(),
             link: item.link().unwrap_or_default().to_string(),
             date: item.pub_date().unwrap_or_default().to_string(),
-            author: item.author().unwrap_or_default().to_string(),
             content: item.description().unwrap_or_default().to_string(),
         })
         .collect()
@@ -120,7 +116,6 @@ mod tests {
             title: "Hellow".to_owned(),
             link: "https://dottorblaster.it".to_owned(),
             date: "26 Jun 2023".to_owned(),
-            author: "Alessio Biancalana".to_owned(),
             content: "Now we are testing pacnews thoroughly".to_owned(),
         };
 
@@ -128,7 +123,6 @@ mod tests {
 
         assert_eq!(entry.title, colored_entry.title);
         assert_eq!(entry.date, colored_entry.date);
-        assert_eq!(entry.author, colored_entry.author);
         assert_eq!(entry.content, colored_entry.content);
     }
 }
