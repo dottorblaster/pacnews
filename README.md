@@ -5,10 +5,11 @@ Read the latest Arch Linux news in your terminal with a single command.
 pacnews is a command-line tool that allows you to read the latest Arch Linux news directly in your terminal. It retrieves the latest news articles from the official Arch Linux news feed and displays them in a clean, easy-to-read format.
 Features
 
-    Fetches the latest Arch Linux news articles
-    Displays news articles in a terminal-friendly format
-    Provides a simple and efficient way to stay up-to-date with Arch Linux news
-    Can be easily integrated into your daily workflow
+- Fetches the latest Arch Linux news articles
+- Displays news articles in a terminal-friendly format
+- Provides a simple and efficient way to stay up-to-date with Arch Linux news
+- Can display only news related to installed packages
+- Can be easily integrated into your daily workflow
 
 # Installation
 You can install pacnews from the AUR (Arch User Repository). Use your preferred AUR helper, for example:
