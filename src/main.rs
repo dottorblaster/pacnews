@@ -1,6 +1,6 @@
 extern crate alpm;
 extern crate clap;
-use clap::{Parser, ValueEnum};
+use clap::{ArgAction, Parser, ValueEnum};
 
 mod config;
 mod entry;
@@ -26,7 +26,7 @@ pub struct Args {
         help = "Perform a lookup based on installed package names"
     )]
     lookup: bool,
-    #[arg(short, long, help = "Enable colored output for entries")]
+    #[arg(short, long, action=ArgAction::SetFalse, help = "Enable colored output for entries")]
     colors: bool,
 }
 
