@@ -8,7 +8,7 @@ readme = "README.md"
 edition = "2018"
 
 [dependencies]
-alpm = "3.0.5"
+alpm = "4.0.1"
 clap = { version = "4.5.16", features = ["cargo", "derive"] }
 colored = "2.1.0"
 html2text = "0.6.0"
