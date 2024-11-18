@@ -12,7 +12,7 @@ alpm = "4.0.1"
 clap = { version = "4.5.18", features = ["cargo", "derive"] }
 colored = "2.1.0"
 html2text = "0.12.5"
-rss = "2.0.7"
+rss = "2.0.10"
 reqwest = { version = "0.12.9", features = ["blocking"] }
 termimad = "0.30.0"
 
