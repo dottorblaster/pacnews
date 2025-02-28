@@ -11,7 +11,7 @@ edition = "2018"
 alpm = "4.0.2"
 clap = { version = "4.5.23", features = ["cargo", "derive"] }
 colored = "2.2.0"
-html2text = "0.12.5"
+html2text = "0.14.0"
 rss = "2.0.11"
 reqwest = { version = "0.12.12", features = ["blocking"] }
 termimad = "0.31.2"
