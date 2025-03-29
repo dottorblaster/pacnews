@@ -9,7 +9,7 @@ jobs:
       image: archlinux
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Install packages
         run: pacman -Syu rust gcc openssl clang pkgconf --noconfirm --needed
       - name: Run the checks
