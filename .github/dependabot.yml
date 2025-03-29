@@ -7,3 +7,8 @@ updates:
     labels:
       - kind/DEPENDENCIES
       - status/CR-NEEDED
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
