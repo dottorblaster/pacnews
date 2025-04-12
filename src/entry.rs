@@ -12,15 +12,17 @@ pub struct Entry {
 
 impl fmt::Display for Entry {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let markdown_content = html2text::from_read(self.content.as_bytes(), 250);
-        write!(
-            f,
-            "Title: {}\nPosted: {}\nLink: {}\n{}",
-            self.title,
-            self.date,
-            self.link,
-            termimad::inline(&markdown_content)
-        )
+        match html2text::from_read(self.content.as_bytes(), 250) {
+            Ok(markdown_content) => write!(
+                f,
+                "Title: {}\nPosted: {}\nLink: {}\n{}",
+                self.title,
+                self.date,
+                self.link,
+                termimad::inline(&markdown_content)
+            ),
+            Err(_) => Err(fmt::Error::default()),
+        }
     }
 }
 
@@ -45,15 +47,17 @@ impl From<Entry> for ColoredEntry {
 
 impl fmt::Display for ColoredEntry {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let markdown_content = html2text::from_read(self.content.as_bytes(), 250);
-        write!(
-            f,
-            "Title: {}\nPosted: {}\nLink: {}\n{}",
-            self.title.cyan(),
-            self.date.yellow(),
-            self.link.purple(),
-            termimad::inline(&markdown_content)
-        )
+        match html2text::from_read(self.content.as_bytes(), 250) {
+            Ok(markdown_content) => write!(
+                f,
+                "Title: {}\nPosted: {}\nLink: {}\n{}",
+                self.title.cyan(),
+                self.date.yellow(),
+                self.link.purple(),
+                termimad::inline(&markdown_content)
+            ),
+            Err(_) => Err(fmt::Error::default()),
+        }
     }
 }
 
