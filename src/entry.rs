@@ -21,7 +21,7 @@ impl fmt::Display for Entry {
                 self.link,
                 termimad::inline(&markdown_content)
             ),
-            Err(_) => Err(fmt::Error::default()),
+            Err(_) => Err(fmt::Error),
         }
     }
 }
@@ -56,7 +56,7 @@ impl fmt::Display for ColoredEntry {
                 self.link.purple(),
                 termimad::inline(&markdown_content)
             ),
-            Err(_) => Err(fmt::Error::default()),
+            Err(_) => Err(fmt::Error),
         }
     }
 }
