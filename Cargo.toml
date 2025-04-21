@@ -17,5 +17,5 @@ reqwest = { version = "0.12.15", features = ["blocking"] }
 termimad = "0.31.2"
 
 [dev-dependencies]
-assert_cmd = "2.0.16"
+assert_cmd = "2.0.17"
 predicates = "3.1.3"
