@@ -1,7 +1,7 @@
 use crate::{Args, Sort};
 
 pub fn get_config_options(config: Args) -> (Sort, bool, bool, Option<u16>) {
-    (config.sort, config.lookup, config.colors, config.count)
+    (config.sort, config.lookup, config.colors, config.number)
 }
 
 #[cfg(test)]
@@ -14,7 +14,7 @@ mod tests {
             sort: Sort::Asc,
             lookup: true,
             colors: true,
-            count: Some(16),
+            number: Some(16),
         };
 
         let (sorting, is_lookup_enabled, colors, count) = get_config_options(config);

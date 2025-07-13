@@ -29,7 +29,7 @@ pub struct Args {
     #[arg(short, long, action=ArgAction::SetFalse, help = "Enable colored output for entries")]
     colors: bool,
     #[arg(short('n'), long, help = "Number of news articles to print")]
-    count: Option<u16>,
+    number: Option<u16>,
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
