@@ -28,7 +28,7 @@ pub struct Args {
     lookup: bool,
     #[arg(short, long, action=ArgAction::SetFalse, help = "Enable colored output for entries")]
     colors: bool,
-    #[arg(short('n'), long, help = "Number of news articles to print")]
+    #[arg(short, long, help = "Number of news articles to print")]
     number: Option<u16>,
 }
 
