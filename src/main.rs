@@ -28,6 +28,8 @@ pub struct Args {
     lookup: bool,
     #[arg(short, long, action=ArgAction::SetFalse, help = "Enable colored output for entries")]
     colors: bool,
+    #[arg(short, long, help = "Number of news articles to print")]
+    number: Option<u16>,
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
@@ -39,7 +41,7 @@ pub enum Sort {
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let config = Args::parse();
 
-    let (sort, lookup, colors) = config::get_config_options(config);
+    let (sort, lookup, colors, count) = config::get_config_options(config);
 
     let items = feed::get_items(FEED_URL, &sort)?;
 
@@ -55,7 +57,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         false => entry::map_rss_items_to_entries(items),
     };
 
-    for entry in entries {
+    let entries = count
+        .map(|c| &entries[..(c as usize).min(entries.len())])
+        .unwrap_or(&entries);
+
+    for entry in entries.iter().cloned() {
         if colors {
             let colored_entry = entry::ColoredEntry::from(entry);
             println!("{colored_entry}")
