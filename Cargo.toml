@@ -13,7 +13,7 @@ clap = { version = "4.5.56", features = ["cargo", "derive"] }
 colored = "3.1.1"
 html2text = "0.16.5"
 rss = "2.0.12"
-reqwest = { version = "0.12.26", features = ["blocking"] }
+reqwest = { version = "0.13.2", features = ["blocking"] }
 termimad = "0.34.1"
 
 [dev-dependencies]
