@@ -112,14 +112,13 @@ dependencies = [
 
 [[package]]
 name = "atom_syndication"
-version = "0.12.7"
+version = "0.12.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d2f68d23e2cb4fd958c705b91a6b4c80ceeaf27a9e11651272a8389d5ce1a4a3"
+checksum = "d48d93a31c932d58b9fd68664a904ae5b74bea37f06c5f68d5bec92f0cdd106d"
 dependencies = [
  "chrono",
  "derive_builder",
  "diligent-date-parser",
- "never",
  "quick-xml",
 ]
 
@@ -1271,12 +1270,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "never"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c96aba5aa877601bb3f6dd6a63a969e1f82e60646e81e71b14496995e9853c91"
-
-[[package]]
 name = "new_debug_unreachable"
 version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1475,9 +1468,9 @@ dependencies = [
 
 [[package]]
 name = "quick-xml"
-version = "0.37.4"
+version = "0.41.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4ce8c88de324ff838700f36fb6ab86c96df0e3c4ab6ef3a9b2044465cce1369"
+checksum = "e660451e55124f798a69a5af3f49ccfbefbd41910eefd25caf2393e1f3473ec1"
 dependencies = [
  "encoding_rs",
  "memchr",
@@ -1677,13 +1670,12 @@ dependencies = [
 
 [[package]]
 name = "rss"
-version = "2.0.12"
+version = "2.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2107738f003660f0a91f56fd3e3bd3ab5d918b2ddaf1e1ec2136fb1c46f71bf"
+checksum = "5fdc977a288e79bfacb4faeaba370da8aef9893ac38b68ae1df6a30d4224a2f9"
 dependencies = [
  "atom_syndication",
  "derive_builder",
- "never",
  "quick-xml",
 ]
 
